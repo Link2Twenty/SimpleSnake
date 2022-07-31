@@ -25,13 +25,18 @@ const FOOD_TOTAL = 1;
  *
  * @param {HTMLCanvasElement} canvas - the canvas element to draw on
  */
-const init = (canvas) => {
+const init = (canvas, scorebox) => {
   // get the context of the canvas
   const context = canvas.getContext("2d");
 
   // set the canvas width and height
   canvas.width = GAME_WIDTH * GAME_RESOLUTION;
   canvas.height = GAME_HEIGHT * GAME_RESOLUTION;
+
+  // style the score
+  scorebox.style.backgroundColor = GAME_COLOR;
+  scorebox.style.color = GAME_BACKGROUND;
+  scorebox.style.width = GAME_WIDTH * GAME_RESOLUTION + 2 + "px";
 
   // create the snake
   const snake = new Snake(
@@ -50,11 +55,10 @@ const init = (canvas) => {
 
   // start the game loop
   const gameLoop = (delta) => {
-    if (snake.isDead) {
-      alert(`You scored ${snake.score}`);
+    if (snake.isDead) return;
 
-      return;
-    }
+    //update score
+    scorebox.textContent = `Score: ${snake.score}`;
 
     // clear the canvas
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -299,4 +303,4 @@ class Food {
 }
 
 // initialize the game
-init(document.getElementById("game"));
+init(document.getElementById("game"), document.querySelector(".score"));
