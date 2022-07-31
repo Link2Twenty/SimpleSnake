@@ -1,3 +1,13 @@
 #game {
   border: 1px solid black;
 }
+
+.score {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: 1.4rem;
+  padding: 0.4rem 0.6rem;
+  border-width: 1px 1px 0 1px;
+  border-style: solid;
+  border-color: black;
+}
